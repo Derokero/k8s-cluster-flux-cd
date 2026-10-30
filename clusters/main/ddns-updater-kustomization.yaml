@@ -5,7 +5,7 @@ metadata:
   name: ddns-updater
   namespace: flux-system
 spec:
-  interval: 1m0s
+  interval: 5m
   path: ./apps/ddns-updater
   prune: true
   sourceRef:
