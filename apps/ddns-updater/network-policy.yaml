@@ -1,0 +1,33 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: allow-ddns-updater
+  namespace: ddns-updater
+spec:
+  description: "Allow ddns-updater UI ingress and FQDN egress to IP check services and DNS providers"
+  endpointSelector:
+    matchLabels:
+      app: ddns-updater
+  ingress:
+    - fromEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "8000"
+              protocol: TCP
+
+  egress:
+    - toFQDNs:
+        - matchPattern: "*"
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
+            - port: "853"
+              protocol: TCP
+            - port: "80"
+              protocol: TCP
+            - port: "53"
+              protocol: UDP
+            - port: "53"
+              protocol: TCP
