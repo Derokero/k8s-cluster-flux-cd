@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: ddns-updater
+  name: infrastructure
   namespace: flux-system
 spec:
   interval: 5m
-  path: ./apps/ddns-updater
+  path: ./infrastructure
   prune: true
   sourceRef:
     kind: GitRepository
